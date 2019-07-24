@@ -5,6 +5,11 @@ const dotenv = require('dotenv')
 
 //
 
+const authRouter = require('../auth/auth-router.js');
+const usersRouter = require('../users/users-router.js');
+
+//
+
 dotenv.config();
 const server = express();
 
@@ -14,6 +19,11 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 server.use(cors());
+
+//
+
+server.use('/api/auth', authRouter);
+server.use('/api/users', usersRouter);
 
 //
 
