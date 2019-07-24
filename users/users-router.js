@@ -1,8 +1,9 @@
 const router = require('express').Router();
 
 const Users = require('./users-model');
+const restricted = require('../auth/restricted');
 
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
     const departmet = req.jwtToken.department;
 
     Users.find(departmet)
