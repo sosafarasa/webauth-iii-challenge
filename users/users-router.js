@@ -4,13 +4,15 @@ const Users = require('./users-model');
 const restricted = require('../auth/restricted');
 
 router.get('/', restricted, (req, res) => {
-    const departmet = req.jwtToken.department;
+    const department = req.jwtToken.authorization;
 
-    Users.find(departmet)
+    Users.find(department)
         .then(users => {
-            res.json(users);
+            res.status(200).json(users);
         })
-        .catch(err => res.send(err));
+        .catch(err => {
+            res.status(500).json(err)
+        });
 })
 
 module.exports = router;

@@ -8,12 +8,11 @@ module.exports = {
 };
 
 function find(department) {
-    const query = db('users').select('id', 'username', 'departments')
+    const query =  db('users').select('id', 'username', 'department')
 
-    if(department) {
-        query.where({ department });
+    if(department){
+        query.where({ department })
     }
-
     return query;
 }
 
